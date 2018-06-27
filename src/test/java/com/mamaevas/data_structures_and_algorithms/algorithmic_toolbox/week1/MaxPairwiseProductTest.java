@@ -1,20 +1,20 @@
 package com.mamaevas.data_structures_and_algorithms.algorithmic_toolbox.week1;
 
-import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MaxPairwiseProductTest {
     @Test
     public void test(){
         int[] array = {1, 6, 3, 4, 5, 6};
-        assertThat(MaxPairwiseProduct.getMaxPairwiseProduct(array), is(36L));
+        assertEquals(MaxPairwiseProduct.getMaxPairwiseProduct(array), 36L);
     }
 
     @Test
     public void test2() {
         int[] array = {90000, 1000000};
-        assertThat(MaxPairwiseProduct.getMaxPairwiseProduct(array), is(90000000000L));
+        assertEquals(MaxPairwiseProduct.getMaxPairwiseProduct(array), 90000000000L);
     }
 }

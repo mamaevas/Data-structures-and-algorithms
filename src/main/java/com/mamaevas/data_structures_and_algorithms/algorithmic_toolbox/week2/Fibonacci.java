@@ -3,7 +3,7 @@ package com.mamaevas.data_structures_and_algorithms.algorithmic_toolbox.week2;
 import java.util.Scanner;
 
 public class Fibonacci {
-    public static long calc_fib(int n) {
+    public static int calc_fib(int n) {
         if (n <= 1)
             return n;
         int previous = 0;
