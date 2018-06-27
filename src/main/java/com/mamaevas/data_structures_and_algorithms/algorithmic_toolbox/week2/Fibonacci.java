@@ -3,14 +3,17 @@ package com.mamaevas.data_structures_and_algorithms.algorithmic_toolbox.week2;
 import java.util.Scanner;
 
 public class Fibonacci {
-    public static int counter =0;
-
     public static long calc_fib(int n) {
-        counter++;
         if (n <= 1)
             return n;
-
-        return calc_fib(n - 1) + calc_fib(n - 2);
+        int previous = 0;
+        int current = 1;
+        for (int i = 0; i < n - 1; i++) {
+            int tmp_previous = previous;
+            previous = current;
+            current = tmp_previous + current;
+        }
+        return current;
     }
 
     public static void main(String args[]) {
@@ -20,3 +23,4 @@ public class Fibonacci {
         System.out.println(calc_fib(n));
     }
 }
+

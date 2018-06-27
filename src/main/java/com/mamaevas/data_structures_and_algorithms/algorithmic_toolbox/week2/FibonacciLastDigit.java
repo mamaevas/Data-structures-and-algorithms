@@ -3,9 +3,7 @@ package com.mamaevas.data_structures_and_algorithms.algorithmic_toolbox.week2;
 import java.util.*;
 
 public class FibonacciLastDigit {
-    public static long counter = 0;
-
-    public static int getFibonacciLastDigitNaive(int n) {
+    private static int getFibonacciLastDigitNaive(int n) {
         if (n <= 1)
             return n;
 
@@ -13,13 +11,12 @@ public class FibonacciLastDigit {
         int current  = 1;
 
         for (int i = 0; i < n - 1; ++i) {
-            counter++;
             int tmp_previous = previous;
             previous = current;
-            current = tmp_previous + current;
+            current = (tmp_previous + current) % 10;
         }
 
-        return current % 10;
+        return current;
     }
     
     public static void main(String[] args) {
