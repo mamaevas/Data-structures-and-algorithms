@@ -5,6 +5,34 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 public class FractionalKnapsack {
+    public static double getOptimalValue(int capacity, int[] values, int[] weights) {
+        double value = 0;
+        //write your code here
+
+        TreeMap<Double, int[]> map = new TreeMap<>();
+        for (int i = 0; i < values.length; i++) {
+            map.put((double) weights[i] / values[i], new int[]{values[i], weights[i]});
+        }
+
+
+        while (capacity > 0) {
+            Map.Entry<Double, int[]> entry = map.firstEntry();
+            if (entry == null) {
+                break;
+            }
+            if (capacity >= entry.getValue()[1]) {
+                value += entry.getValue()[0];
+                capacity -= entry.getValue()[1];
+                map.remove(entry.getKey());
+            } else {
+                double rate = (double) capacity / entry.getValue()[1];
+                value += rate * entry.getValue()[0];
+                break;
+            }
+        }
+        return value;
+    }
+
     public static void main(String args[]) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
@@ -16,39 +44,5 @@ public class FractionalKnapsack {
             weights[i] = scanner.nextInt();
         }
         System.out.println(getOptimalValue(capacity, values, weights));
-    }
-
-    public static double getOptimalValue(int capacity, int[] values, int[] weights) {
-        double result = 0;
-        int length = values.length;
-        //write your code here
-        TreeMap<Double, int[]> map = new TreeMap<>();
-        for (int i = 0; i < length; i++) {
-            double density = values[i] / weights[i];
-            map.put(density, new int[]{values[i], weights[i]});
-        }
-
-
-        int cap = 0;
-        int val = 0;
-        while (cap < capacity) {
-            Map.Entry<Double, int[]> entry = map.lastEntry();
-            double density = entry.getKey();
-            int value = entry.getValue()[0];
-            int weight = entry.getValue()[1];
-
-            int maxValue = getMaxValue(capacity - cap, value);
-            cap += maxValue;
-            result += maxValue * density;
-            map.remove(density);
-        }
-        return result;
-    }
-
-    public static int getMaxValue(int capacity, int value) {
-        if (capacity >= value) {
-            return value;
-        }
-        return capacity;
     }
 } 
